@@ -2,13 +2,14 @@
 
 int main() {
     TipoElemento aux;
+    char string[256] = {};
 
     // lista_criar ============================================================
     Lista* l = lista_criar();
 
-    printf("Lista: %p\n", l);
-    printf("Sentinela: %p\n", l->sentinela);
-    printf("Ant: %p | Prox: %p\n", l->sentinela->ant, l->sentinela->prox);
+    printf("Lista: %p ", l);
+    printf("Sentinela: %p\n\n", l->sentinela);
+    // printf("Ant: %p | Prox: %p\n", l->sentinela->ant, l->sentinela->prox);
 
     // lista_destruir =========================================================
     // lista_destruir(l);
@@ -25,21 +26,28 @@ int main() {
     // lista_removerPosicao(l, 0, &aux);
     // printf("Endereco removido: [%d]\n", aux);
 
-    // lista_removerElemento =========================================================
+    // lista_removerElemento ==================================================
     // lista_removerElemento(l, 20);
 
-    // lista_substituir =========================================================
+    // lista_substituir =======================================================
     lista_substituir(l, 2, 25);
 
-    // lista_posicao =========================================================
+    // lista_posicao ==========================================================
     // printf("lista_posicao: %d\n", lista_posicao(l, 25));
 
-    // lista_buscar ===================================================
+    // lista_buscar ===========================================================
     // lista_buscar(l, 0, &aux);
     // printf("lista_buscar: [%d]\n", aux);
 
-    // lista_contem =========================================================
+    // lista_contem ===========================================================
     // printf("lista_contem: %d\n", lista_contem(l, 15));
+
+    // lista_tamanho ===========================================================
+    // printf("lista_tamanho: %d\n", lista_tamanho(l));
+
+    // lista_toString =========================================================
+    lista_toString(l, string);
+    printf("lista_toString: %s\n\n", string);
 
     // lista_imprimir =========================================================
     lista_imprimir(l);

@@ -144,6 +144,35 @@ Boolean lista_contem(Lista* l, TipoElemento elemento){
     return true;
 }
 // ========================================================================
+int lista_tamanho(Lista* l){
+    return l->qtde;
+}
+// ========================================================================
+Boolean lista_toString(Lista* l, char* enderecoString){
+    if(l){
+        No* aux = (No*) malloc(sizeof(No));
+        aux = l->sentinela->prox;
+        char buffer[50] = {};
+
+        sprintf(buffer,"%d", aux->dado);
+
+        strcat(enderecoString, "[");
+        strcat(enderecoString, buffer);
+        aux = aux->prox;
+        while(aux != l->sentinela){
+            sprintf(buffer,"%d", aux->dado);
+
+            strcat(enderecoString, "|");
+            strcat(enderecoString, buffer);
+            aux = aux->prox;
+        }
+        strcat(enderecoString, "]");
+        return true;
+    }else{
+        return false;
+    }
+}
+// ========================================================================
 void lista_imprimir(Lista* l){
     No* aux = (No*) malloc(sizeof(No));
     aux = l->sentinela->prox;
