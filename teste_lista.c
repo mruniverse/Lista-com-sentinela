@@ -34,6 +34,10 @@ int main() {
     // lista_posicao =========================================================
     // printf("lista_posicao: %d\n", lista_posicao(l, 25));
 
+    // lista_buscar ===================================================
+    // lista_buscar(l, 0, &aux);
+    // printf("lista_buscar: [%d]\n", aux);
+
     // lista_imprimir =========================================================
     lista_imprimir(l);
 

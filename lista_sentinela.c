@@ -121,6 +121,17 @@ int lista_posicao(Lista* l, TipoElemento elemento){
     return pos;
 }
 // ========================================================================
+Boolean lista_buscar(Lista* l, int posicao, TipoElemento* endereco){
+    if(posicao > l->qtde || posicao < 0){
+        return false;
+    }else{
+        No* aux = getNode(l, posicao);
+        *endereco = aux->dado;
+
+        return true;
+    }
+}
+// ========================================================================
 void lista_imprimir(Lista* l){
     No* aux = (No*) malloc(sizeof(No));
     aux = l->sentinela->prox;
