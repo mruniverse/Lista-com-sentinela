@@ -25,6 +25,9 @@ int main() {
     // lista_removerPosicao(l, 0, &aux);
     // printf("Endereco removido: [%d]\n", aux);
 
+    // lista_removerElemento =========================================================
+    lista_removerElemento(l, 20);
+
     // lista_imprimir =========================================================
     lista_imprimir(l);
 

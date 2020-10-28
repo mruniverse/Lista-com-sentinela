@@ -70,6 +70,19 @@ Boolean lista_removerPosicao(Lista* l, int posicao, TipoElemento* endereco){
     }
 }
 // ========================================================================
+int lista_removerElemento(Lista* l, TipoElemento elemento){
+    No* aux = (No*) malloc(sizeof(No));
+    aux = l->sentinela->prox;
+
+    while(elemento != aux->dado){
+        aux = aux->prox;
+    }
+
+    aux->ant->prox = aux->prox;
+    aux->prox->ant = aux->ant;
+    l->qtde--;
+}
+// ========================================================================
 void lista_imprimir(Lista* l){
     No* aux = (No*) malloc(sizeof(No));
     aux = l->sentinela->prox;
