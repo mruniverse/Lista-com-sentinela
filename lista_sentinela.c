@@ -132,6 +132,18 @@ Boolean lista_buscar(Lista* l, int posicao, TipoElemento* endereco){
     }
 }
 // ========================================================================
+Boolean lista_contem(Lista* l, TipoElemento elemento){
+    No* aux = (No*) malloc(sizeof(No));
+    aux = l->sentinela->prox;
+
+    while(elemento != aux->dado){
+        if(aux->prox == l->sentinela) return false;
+        aux = aux->prox;
+    }
+
+    return true;
+}
+// ========================================================================
 void lista_imprimir(Lista* l){
     No* aux = (No*) malloc(sizeof(No));
     aux = l->sentinela->prox;

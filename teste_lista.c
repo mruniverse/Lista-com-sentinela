@@ -38,6 +38,9 @@ int main() {
     // lista_buscar(l, 0, &aux);
     // printf("lista_buscar: [%d]\n", aux);
 
+    // lista_contem =========================================================
+    // printf("lista_contem: %d\n", lista_contem(l, 15));
+
     // lista_imprimir =========================================================
     lista_imprimir(l);
 
