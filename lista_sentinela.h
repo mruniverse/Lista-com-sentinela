@@ -12,7 +12,7 @@ typedef struct no{
     struct no *prox;
 }No;
 
-typedef struct {
+typedef struct lista{
     No *sentinela;
     int qtde;
 }Lista;
@@ -32,4 +32,5 @@ Boolean lista_contem(Lista* l, TipoElemento elemento);
 int lista_tamanho(Lista* l);
 Boolean lista_toString(Lista* l, char* enderecoString);
 void lista_imprimir(Lista* l);
+No* getNode(Lista* l, int position);
 // ============================================================================
