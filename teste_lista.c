@@ -1,6 +1,7 @@
 #include "lista_sentinela.h"
 
 int main() {
+    TipoElemento aux;
 
     // lista_criar ============================================================
     Lista* l = lista_criar();
@@ -12,9 +13,17 @@ int main() {
     // lista_destruir =========================================================
     // lista_destruir(l);
 
-    // lista_inserirFim =========================================================
+    // lista_inserirFim =======================================================
     lista_inserirFim(l, 10);
     lista_inserirFim(l, 20);
+
+    // lista_inserir ==========================================================
+    lista_inserir(l, 15, 1);
+    // lista_imprimir(l);
+
+    // lista_removerPosicao ===================================================
+    // lista_removerPosicao(l, 0, &aux);
+    // printf("Endereco removido: [%d]\n", aux);
 
     // lista_imprimir =========================================================
     lista_imprimir(l);

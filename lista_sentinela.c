@@ -34,11 +34,40 @@ Boolean lista_inserirFim(Lista* l, TipoElemento elemento){
     novo_no->dado = elemento;
     novo_no->prox = l->sentinela;
     novo_no->ant = l->sentinela->ant;
-    // Acopla o ponteiro do ultimo no, no novo no
+    // Acopla o ponteiro do ultimo node, no novo node
     l->sentinela->ant->prox = novo_no;
-    // Acopla o ultimo ponteiro da sentinela ao novo no
+    // Acopla o ultimo ponteiro da sentinela ao novo node
     l->sentinela->ant = novo_no;
     l->qtde++;
+}
+// ========================================================================
+Boolean lista_inserir(Lista* l, TipoElemento elemento, int posicao){
+    No* novo_no = (No*) malloc(sizeof(No));
+    No* aux = getNode(l, posicao-1);
+
+    novo_no->dado = elemento;
+    novo_no->prox = aux->prox;
+    novo_no->ant = aux;
+
+    aux->prox = novo_no;
+    novo_no->prox->ant = novo_no;
+
+    l->qtde++;
+}
+// ========================================================================
+Boolean lista_removerPosicao(Lista* l, int posicao, TipoElemento* endereco){
+    if(posicao > l->qtde || posicao < 0){
+        return 0;
+    }else{
+        No* aux = getNode(l, posicao);
+        *endereco = aux->dado;
+
+        aux->ant->prox = aux->prox;
+        aux->prox->ant = aux->ant;
+        l->qtde--;
+
+        return 1;
+    }
 }
 // ========================================================================
 void lista_imprimir(Lista* l){
@@ -46,7 +75,7 @@ void lista_imprimir(Lista* l){
     aux = l->sentinela->prox;
 
     for (int i = 0; i < l->qtde; i++) {
-        printf("Node [%d]: |%p|%d|%p|\n", i, aux->ant, aux->dado, aux->prox);
+        printf("Node [%p]: |%p|%d|%p|\n", aux, aux->ant, aux->dado, aux->prox);
         aux = aux->prox;
     }
 }
