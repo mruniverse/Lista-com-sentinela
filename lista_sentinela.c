@@ -23,22 +23,30 @@ void lista_destruir(Lista* l){
             free(aux->ant);
             aux = aux->prox;
         }
+
+        free(aux);
     }
 
     free(l->sentinela); free(l);
 }
 // ========================================================================
 Boolean lista_inserirFim(Lista* l, TipoElemento elemento){
-    No* novo_no = (No*) malloc(sizeof(No));
-    // Aponta o novo no para os elementos da lista
-    novo_no->dado = elemento;
-    novo_no->prox = l->sentinela;
-    novo_no->ant = l->sentinela->ant;
-    // Acopla o ponteiro do ultimo node, no novo node
-    l->sentinela->ant->prox = novo_no;
-    // Acopla o ultimo ponteiro da sentinela ao novo node
-    l->sentinela->ant = novo_no;
-    l->qtde++;
+    if(l){
+        No* novo_no = (No*) malloc(sizeof(No));
+        // Aponta o novo no para os elementos da lista
+        novo_no->dado = elemento;
+        novo_no->prox = l->sentinela;
+        novo_no->ant = l->sentinela->ant;
+        // Acopla o ponteiro do ultimo node, no novo node
+        l->sentinela->ant->prox = novo_no;
+        // Acopla o ultimo ponteiro da sentinela ao novo node
+        l->sentinela->ant = novo_no;
+        l->qtde++;
+
+        return true;
+    }else{
+        return false;
+    }
 }
 // ========================================================================
 Boolean lista_inserir(Lista* l, TipoElemento elemento, int posicao){
@@ -65,6 +73,7 @@ Boolean lista_removerPosicao(Lista* l, int posicao, TipoElemento* endereco){
         aux->ant->prox = aux->prox;
         aux->prox->ant = aux->ant;
         l->qtde--;
+        free(aux);
 
         return 1;
     }
@@ -75,12 +84,26 @@ int lista_removerElemento(Lista* l, TipoElemento elemento){
     aux = l->sentinela->prox;
 
     while(elemento != aux->dado){
+        if(aux->prox == l->sentinela) return 0;
         aux = aux->prox;
     }
 
     aux->ant->prox = aux->prox;
     aux->prox->ant = aux->ant;
     l->qtde--;
+    free(aux);
+
+    return 1;
+}
+// ========================================================================
+Boolean lista_substituir(Lista* l, int posicao, TipoElemento novoElemento){
+    No* aux = getNode(l, posicao);
+    if(aux){
+        aux->dado = novoElemento;
+        return true;
+    }else{
+        return false;
+    }
 }
 // ========================================================================
 void lista_imprimir(Lista* l){
@@ -94,12 +117,16 @@ void lista_imprimir(Lista* l){
 }
 // ========================================================================
 No* getNode(Lista* l, int position){
-    No* aux = (No*) malloc(sizeof(No));
-    aux = l->sentinela->prox;
+    if(position > l->qtde){
+        return NULL;
+    }else{
+        No* aux = (No*) malloc(sizeof(No));
+        aux = l->sentinela->prox;
 
-    for (int i = 0; i < position; i++) {
-        aux = aux->prox;
+        for (int i = 0; i < position; i++) {
+            aux = aux->prox;
+        }
+
+        return aux;
     }
-
-    return aux;
 }
