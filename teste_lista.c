@@ -31,6 +31,9 @@ int main() {
     // lista_substituir =========================================================
     lista_substituir(l, 2, 25);
 
+    // lista_posicao =========================================================
+    // printf("lista_posicao: %d\n", lista_posicao(l, 25));
+
     // lista_imprimir =========================================================
     lista_imprimir(l);
 

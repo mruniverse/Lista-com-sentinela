@@ -106,6 +106,21 @@ Boolean lista_substituir(Lista* l, int posicao, TipoElemento novoElemento){
     }
 }
 // ========================================================================
+int lista_posicao(Lista* l, TipoElemento elemento){
+    int pos = 0;
+    No* aux = (No*) malloc(sizeof(No));
+    aux = l->sentinela->prox;
+
+    while(elemento != aux->dado){
+        if(aux->prox == l->sentinela) return -1;
+        aux = aux->prox;
+        pos++;
+    }
+
+    free(aux);
+    return pos;
+}
+// ========================================================================
 void lista_imprimir(Lista* l){
     No* aux = (No*) malloc(sizeof(No));
     aux = l->sentinela->prox;
